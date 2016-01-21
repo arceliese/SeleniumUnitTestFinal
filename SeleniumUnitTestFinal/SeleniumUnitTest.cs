@@ -49,7 +49,7 @@ namespace NUnitSelenium
             //Step e
             driver.Quit();
             Console.WriteLine("====================================");
-            Console.WriteLine("|    T E S T   C O M M I T  13      |");
+            Console.WriteLine("|    T E S T   C O M M I T  14      |");
             Console.WriteLine("====================================");
         }
 
