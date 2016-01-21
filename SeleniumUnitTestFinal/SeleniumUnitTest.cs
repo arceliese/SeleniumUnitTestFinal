@@ -10,14 +10,50 @@ using NUnit.Framework;
 
 namespace NUnitSelenium
 {
-    [TestFixture]
+    [TestFixture, Description("Tests Google Search with String data")]
+    public class GoogleTests
+    {
+        private IWebDriver driver;
+
+        public GoogleTests() { }
+
+        [SetUp]
+        public void LoadDriver() 
+        {
+            driver = new ChromeDriver(); 
+        }
+
+        [TestCase("planit")]   // searchString = Google
+        [TestCase("auckland")]     // searchString = Bing
+        public void Search(string searchString)
+        {
+            // execute Search twice with testdata: planit, auckland
+
+            driver.Navigate().GoToUrl("http://google.com");
+            driver.FindElement(By.Name("q")).SendKeys(searchString);
+            driver.FindElement(By.Name("q")).Submit();
+
+            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+            IWebElement myDynamicElement = driver.FindElement(By.Id("resultStats"));
+
+            Assert.True(driver.Title.Contains(searchString));
+        }
+
+        [TearDown]
+        public void UnloadDriver() 
+        { 
+            driver.Quit(); 
+        }
+    }
+
+    [TestFixture, Description("Tests Selenium Downloads Page")]
     public class SeleniumTest
     {
         private IWebDriver driver;
 
         static void Main(string[] args)
         {
-
+            
         }
 
         [SetUp]
@@ -48,40 +84,11 @@ namespace NUnitSelenium
         {
             //Step e
             driver.Quit();
+
             Console.WriteLine("====================================");
-            Console.WriteLine("|    T E S T   C O M M I T  16      |");
+            Console.WriteLine("|    T E S T   C O M M I T  17      |");
             Console.WriteLine("====================================");
         }
 
-    }
-
-    [TestFixture, Description("Tests Google Search with String data")]
-    public class GoogleTests
-    {
-        private IWebDriver driver;
-
-        public GoogleTests() { }
-
-        [SetUp]
-        public void LoadDriver() { driver = new ChromeDriver(); }
-
-        [TestCase("planit")]   // searchString = Google
-        [TestCase("auckland")]     // searchString = Bing
-        public void Search(string searchString)
-        {
-            // execute Search twice with testdata: Google, Bing
-
-            driver.Navigate().GoToUrl("http://google.com");
-            driver.FindElement(By.Name("q")).SendKeys(searchString);
-            driver.FindElement(By.Name("q")).Submit();
-
-            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
-            IWebElement myDynamicElement = driver.FindElement(By.Id("resultStats"));
-
-            Assert.True(driver.Title.Contains(searchString));
-        }
-
-        [TearDown]
-        public void UnloadDriver() { driver.Quit(); }
     }
 }
