@@ -48,7 +48,7 @@ namespace NUnitSelenium
         {
             //Step e
             driver.Quit();
-            Console.WriteLine("Test Commit 2");
+            Console.WriteLine("Test Commit 3");
         }
 
     }
