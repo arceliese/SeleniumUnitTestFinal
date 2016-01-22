@@ -86,7 +86,7 @@ namespace NUnitSelenium
             driver.Quit();
 
             Console.WriteLine("====================================");
-            Console.WriteLine("|    T E S T   C O M M I T  18      |");
+            Console.WriteLine("|    T E S T   C O M M I T  19      |");
             Console.WriteLine("====================================");
         }
 
