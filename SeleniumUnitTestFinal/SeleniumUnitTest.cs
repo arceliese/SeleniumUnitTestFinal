@@ -33,7 +33,7 @@ namespace NUnitSelenium
             driver.FindElement(By.Name("q")).SendKeys(searchString);
             driver.FindElement(By.Name("q")).Submit();
 
-            //driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
             IWebElement myDynamicElement = driver.FindElement(By.Id("resultStats"));
 
             Assert.True(driver.Title.Contains(searchString));
@@ -86,7 +86,7 @@ namespace NUnitSelenium
             driver.Quit();
 
             Console.WriteLine("====================================");
-            Console.WriteLine("|    T E S T   C O M M I T  20      |");
+            Console.WriteLine("|    T E S T   C O M M I T  21      |");
             Console.WriteLine("====================================");
         }
 
